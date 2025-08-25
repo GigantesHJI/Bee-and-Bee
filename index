@@ -1,0 +1,672 @@
+<!DOCTYPE html><html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bee & Bee — Knusse Bijen B&B in Japan</title>
+  <meta name="description" content="Een warme, knusse bed & breakfast in Japan met eigen bijenkorven, theeceremonie bij het ontbijt en gezellige kamers in Japanse stijl. Reserveer je verblijf en ervaar het zoemen van de tuin!"/>
+  <meta property="og:title" content="Bee & Bee — Knusse Bijen B&B in Japan"/>
+  <meta property="og:description" content="Sfeervol logeren tussen de bloemen en bijen. Honingproeverij, theeceremonie, en rustieke kamers in Japanse stijl."/>
+  <meta property="og:type" content="website"/>
+  <meta name="theme-color" content="#F6C453"/>  <!-- Favicon (inline SVG bee) -->  <link rel="icon" href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <circle cx="32" cy="32" r="30" fill="%23FFEFD6"/>
+    <g transform="translate(8,12)">
+      <ellipse cx="20" cy="20" rx="12" ry="9" fill="%23F6C453"/>
+      <ellipse cx="20" cy="20" rx="12" ry="9" fill="none" stroke="%23221f1f" stroke-width="2"/>
+      <path d="M8 20h24M8 24h24M8 16h24" stroke="%23221f1f" stroke-width="2"/>
+      <circle cx="8" cy="20" r="5" fill="%23221f1f"/>
+      <ellipse cx="30" cy="12" rx="6" ry="3.5" fill="%23A7E0F3" stroke="%23221f1f" stroke-width="2"/>
+      <ellipse cx="14" cy="12" rx="6" ry="3.5" fill="%23A7E0F3" stroke="%23221f1f" stroke-width="2"/>
+    </g>
+  </svg>'/>  <!-- Fonts: warm, rond + Japans serif -->  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Noto+Serif+JP:wght@500;700&display=swap" rel="stylesheet">  <style>
+    :root{
+      --bg: #FFF9EF;            /* warme crème */
+      --paper: #FFFAF3;         /* kaartachtergrond */
+      --ink: #2B2A28;           /* tekst */
+      --muted: #6B655E;         /* secundair */
+      --brand: #F6C453;         /* honinggeel */
+      --amber: #EAAE3C;         /* accent */
+      --brown: #4A2C2A;         /* diepte */
+      --leaf: #7AA874;          /* groenaccent */
+      --line: #EDE3CF;          /* lijnkleur */
+      --radius: 16px;
+      --shadow: 0 12px 35px rgba(80,46,19,.12);
+      --shadow-soft: 0 8px 22px rgba(80,46,19,.08);
+      --maxw: 1180px;
+    }
+
+    /* Global reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: 'M PLUS Rounded 1c', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Subtiele honingraat achtergrond */
+    body::before{
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20px 20px, rgba(246,196,83,0.12) 2px, transparent 2px),
+        radial-gradient(circle at 50px 50px, rgba(234,174,60,0.08) 2px, transparent 2px);
+      background-size: 60px 60px, 60px 60px;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display: block; }
+
+    /* Container */
+    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+
+    /* =================== Header & Nav =================== */
+    header{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(6px);
+      background: rgba(255,249,239,.75);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+    .brand{ display: flex; align-items: center; gap: 12px; }
+    .brand svg{ width: 36px; height: 36px; }
+    .brand h1{ margin: 0; font-size: 1.25rem; font-weight: 800; letter-spacing: .2px; }
+    .brand small{ display:block; color: var(--muted); margin-top: -2px; font-size: .78rem; }
+
+    nav ul{ display: flex; align-items: center; gap: 18px; list-style: none; margin: 0; padding: 0; }
+    nav a{ padding: 8px 12px; border-radius: 999px; }
+    nav a:hover{ background: var(--paper); box-shadow: var(--shadow-soft); }
+
+    .cta{ background: var(--brand); color: #3a2a11; font-weight: 800; padding: 10px 16px; border-radius: 999px; box-shadow: var(--shadow); }
+    .cta:hover{ transform: translateY(-1px); box-shadow: 0 16px 40px rgba(246,196,83,.35); }
+
+    /* Mobile nav */
+    .burger{ display:none; width:40px; height:40px; border-radius:10px; border:1px solid var(--line); background: var(--paper); align-items:center; justify-content:center; }
+    .menu{ display:flex; }
+    @media (max-width: 900px){
+      .menu{ display:none; position: absolute; top:60px; right:20px; left:20px; background: var(--paper); padding:14px; border-radius:14px; box-shadow: var(--shadow); border:1px solid var(--line); }
+      .menu.open{ display:block; }
+      .menu ul{ flex-direction: column; align-items: stretch; }
+      .burger{ display:flex; }
+    }
+
+    /* =================== Hero =================== */
+    .hero{
+      position: relative;
+      overflow: clip;
+      padding: 64px 0 36px;
+      background:
+        radial-gradient(1200px 400px at 80% -10%, #FFF2D9 20%, transparent 70%),
+        linear-gradient(180deg, #FFF9EF 0%, #FFF4E2 100%);
+    }
+    .hero .inner{ display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; align-items: center; }
+    .kicker{ font-family: 'Noto Serif JP', serif; color: var(--brown); letter-spacing:.4px; font-weight:700; }
+    .hero h2{ font-size: clamp(2rem, 3.2vw, 3rem); line-height:1.15; margin: 10px 0 12px; font-weight: 800; }
+    .hero p{ font-size: 1.05rem; color: #473f3a; }
+
+    .hero-card{ background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#fff; border:1px solid var(--line); box-shadow: var(--shadow-soft); font-size:.92rem; }
+    .badge svg{ width:18px; height:18px; }
+
+    .hero-illustration{ position: relative; aspect-ratio: 4/3; border-radius: var(--radius); border:1px solid var(--line); background: #fff; box-shadow: var(--shadow); overflow: hidden; }
+    .garden{ position:absolute; inset:0; background:
+      radial-gradient(circle at 80% 70%, #F6C453 2px, transparent 3px) 0 0/85px 85px,
+      radial-gradient(circle at 20% 40%, #EAAE3C 2px, transparent 3px) 0 0/85px 85px,
+      linear-gradient(180deg, #FFF, #FFF8EC);
+    }
+    .hive{ position:absolute; bottom:16px; left:16px; width:160px; height:140px; background: #FBE3A6; border:1px solid #E2D3AF; border-radius:14px; box-shadow: inset 0 10px 0 rgba(255,255,255,.6), 0 10px 30px rgba(80,46,19,.12); }
+    .hive::before, .hive::after{ content:""; position:absolute; left:10px; right:10px; height:18px; border:1px solid #E2D3AF; background:#F8D47A; border-radius:10px; }
+    .hive::before{ top:26px; }
+    .hive::after{ top:54px; }
+    .hive .door{ position:absolute; bottom:14px; left:50%; transform:translateX(-50%); width:40px; height:26px; border-radius:20px; background:#4A2C2A; box-shadow: inset 0 4px 0 rgba(255,255,255,.2); }
+    .bee{ position:absolute; --size:22px; width:var(--size); height:var(--size); filter: drop-shadow(0 6px 8px rgba(0,0,0,.12)); }
+    .bee > svg{ width:100%; height:100%; }
+
+    @keyframes buzz {
+      0%   { transform: translate(0,0) rotate(0deg); }
+      25%  { transform: translate(8px,-6px) rotate(6deg); }
+      50%  { transform: translate(14px, 4px) rotate(-4deg); }
+      75%  { transform: translate(-6px, 6px) rotate(4deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+    @media (prefers-reduced-motion: no-preference){
+      .bee { animation: buzz 4s ease-in-out infinite; }
+    }
+
+    @media (max-width: 980px){
+      .hero .inner{ grid-template-columns: 1fr; }
+    }
+
+    /* Wavy divider */
+    .wave{ display:block; height:56px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,80 C240,110 480,0 720,40 C960,80 1200,130 1440,90 L1440,120 L0,120 Z" fill="%23FFF4E2"/></svg>') bottom/cover no-repeat; }
+
+    /* =================== Highlights =================== */
+    .highlights{ padding: 28px 0 10px; }
+    .grid-3{ display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .card{ background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow-soft); }
+    .card h3{ margin:10px 0 6px; font-size:1.15rem; }
+    .icon{ width:28px; height:28px; }
+    .card p{ color: var(--muted); margin:0; }
+    @media (max-width: 900px){ .grid-3{ grid-template-columns: 1fr; } }
+
+    /* =================== Kamers =================== */
+    .section{ padding: 56px 0; }
+    .section h2{ font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: clamp(1.5rem, 2.2vw, 2.2rem); margin: 0 0 18px; }
+    .muted{ color: var(--muted); }
+
+    .room-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:18px; }
+    .room{ display:flex; flex-direction:column; gap:12px; background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow); }
+    .room .img{ aspect-ratio: 16/11; background: linear-gradient(135deg, #fff 0%, #FFF4E2 100%); position:relative; }
+    .room .img::after{ content:""; position:absolute; inset:0; background:
+      radial-gradient(120px 40px at 30% 40%, rgba(246,196,83,.35), transparent 60%),
+      radial-gradient(140px 50px at 70% 60%, rgba(234,174,60,.25), transparent 60%);
+    }
+    .room .body{ padding:16px; }
+    .room h3{ margin: 0 0 6px; font-size: 1.15rem; }
+    .pill{ display:inline-flex; align-items:center; gap:8px; font-size:.9rem; padding:6px 10px; background:#fff; border:1px solid var(--line); border-radius:999px; }
+    .price{ font-weight:800; color:#3a2a11; }
+    .room ul{ margin:10px 0 0 18px; color: var(--muted); }
+
+    @media (max-width: 1000px){ .room-grid{ grid-template-columns: 1fr; } }
+
+    /* =================== Imkers & Ervaring =================== */
+    .hive-experience{ display:grid; grid-template-columns: 1fr 1fr; gap:22px; }
+    .hive-card{ background: var(--paper); border:1px solid var(--line); border-radius: var(--radius); padding:18px; box-shadow: var(--shadow); }
+    .list{ list-style: none; padding:0; margin:0; display:grid; gap:10px; }
+    .list li{ display:flex; align-items:flex-start; gap:10px; }
+    .list svg{ margin-top:3px; }
+    @media (max-width: 980px){ .hive-experience{ grid-template-columns: 1fr; } }
+
+    /* =================== Formulier =================== */
+    .form{
+      background: #fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+    .grid-3c{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; }
+    @media (max-width: 800px){ .grid-2,.grid-3c{ grid-template-columns: 1fr; } }
+
+    label{ font-weight:700; font-size:.95rem; display:block; margin-bottom:6px; }
+    input, select, textarea{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line); background:#FFFEFC; font: inherit;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    .help{ font-size:.9rem; color: var(--muted); margin-top: 6px; }
+    .actions{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top: 8px; }
+
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--line); cursor:pointer; background: var(--brand); font-weight:800; color:#3a2a11; box-shadow: var(--shadow); }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 46px rgba(246,196,83,.35); }
+    .ghost{ background:#fff; }
+
+    .estimate{ margin-left:auto; font-weight:800; }
+
+    .notice{
+      display:flex; align-items:flex-start; gap:10px; padding:12px; background:#FFF7E6; border:1px dashed #E6C888; border-radius:12px; margin-top: 14px;
+    }
+
+    /* =================== FAQ & Reviews =================== */
+    details{ background: var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+    details + details{ margin-top:10px; }
+    summary{ cursor:pointer; font-weight:700; }
+
+    .reviews{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; }
+    .review{ background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px; box-shadow: var(--shadow-soft); }
+    .stars{ color:#F5A524; letter-spacing:2px; }
+    @media (max-width: 900px){ .reviews{ grid-template-columns: 1fr; } }
+
+    /* =================== Footer =================== */
+    footer{ margin-top: 48px; background: #FFF4E2; border-top:1px solid var(--line); }
+    .foot{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 16px; padding: 24px 0; }
+    .legal{ color: var(--muted); font-size: .92rem; }
+    @media (max-width: 900px){ .foot{ grid-template-columns: 1fr; } }
+
+    /* Scroll-to-top potje */
+    #toTop{ position: fixed; right: 18px; bottom: 18px; width: 52px; height: 52px; border-radius: 14px; background: var(--brand); border:1px solid var(--line); box-shadow: var(--shadow); display:none; align-items:center; justify-content:center; }
+    #toTop:hover{ transform: translateY(-2px); }
+
+    /* Utility */
+    .mt-0{ margin-top: 0; }
+    .mb-0{ margin-bottom: 0; }
+  </style></head><body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Bee & Bee home">
+        <svg fill="none" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="30" fill="#FFEFD6"/>
+          <g transform="translate(12,10)">
+            <ellipse cx="20" cy="24" rx="14" ry="10" fill="#F6C453" stroke="#221f1f" stroke-width="2"/>
+            <path d="M8 24h24M8 20h24M8 28h24" stroke="#221f1f" stroke-width="2"/>
+            <circle cx="8" cy="24" r="5" fill="#221f1f"/>
+            <ellipse cx="30" cy="14" rx="6.5" ry="4" fill="#A7E0F3" stroke="#221f1f" stroke-width="2"/>
+            <ellipse cx="14" cy="14" rx="6.5" ry="4" fill="#A7E0F3" stroke="#221f1f" stroke-width="2"/>
+          </g>
+        </svg>
+        <div>
+          <h1>Bee & Bee</h1>
+          <small>やさしい宿 · Bijen B&B Japan</small>
+        </div>
+      </a><button class="burger" aria-label="menu" id="burger" aria-expanded="false" aria-controls="menu">🍯</button>
+  <nav class="menu" id="menu" aria-label="primaire">
+    <ul>
+      <li><a href="#kamers">Kamers</a></li>
+      <li><a href="#bijen">Bijen & tuin</a></li>
+      <li><a href="#ontbijt">Ontbijt</a></li>
+      <li><a href="#route">Route</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a class="cta" href="#boek">Reserveer</a></li>
+    </ul>
+  </nav>
+</div>
+
+  </header>  <main id="top">
+    <!-- ================= Hero ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap inner">
+        <div>
+          <div class="kicker">和のあたたかさ — Warme Japanse gastvrijheid</div>
+          <h2 id="hero-title">Knusse overnachtingen tussen bloemen, bijen en bamboe</h2>
+          <p>Welkom bij <strong>Bee & Bee</strong>: een kleine, charmante bed & breakfast met eigen <em>bijenkorven</em>, gelegen in het groen van Japan. Word wakker met zachte zon, het zoemen van onze tuin, een <em>theeceremonie</em> bij het ontbijt en honing rechtstreeks van de raat. すてき！</p><div class="hero-card">
+        <div class="badges" role="list" aria-label="hoogtepunten">
+          <span class="badge" role="listitem">🐝 Honingproeverij</span>
+          <span class="badge" role="listitem">🫖 Japanse theeceremonie</span>
+          <span class="badge" role="listitem">🛏️ Tatami en houtaccenten</span>
+          <span class="badge" role="listitem">🌿 Tuin & bijenpad</span>
+          <span class="badge" role="listitem">🚉 Dicht bij OV</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-illustration" aria-hidden="true">
+      <div class="garden"></div>
+      <div class="hive">
+        <div class="door"></div>
+      </div>
+      <div class="bee" style="left: 40%; top: 16%">{BEE}</div>
+      <div class="bee" style="left: 68%; top: 48%; animation-delay: .8s">{BEE}</div>
+      <div class="bee" style="left: 26%; top: 64%; animation-delay: 1.6s">{BEE}</div>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true"></div>
+</section>
+
+<!-- ================= Highlights ================= -->
+<section class="highlights wrap" aria-labelledby="high-title">
+  <h2 id="high-title">Waarom gasten ons liefhebben</h2>
+  <div class="grid-3" role="list">
+    <article class="card" role="listitem">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l3.5 7.1L23 9l-5.5 5.3L19 22l-7-3.7L5 22l1.5-7.7L1 9l7.5-.9L12 2z" stroke="#4A2C2A"/></svg>
+      <h3>Intiem & gezellig</h3>
+      <p>Kleine B&B met drie kamers, veel aandacht en rust—met een vleugje <em>kawaii</em> charme.</p>
+    </article>
+    <article class="card" role="listitem">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#4A2C2A"/><path d="M7 12h10M12 7v10" stroke="#4A2C2A"/></svg>
+      <h3>Honing van eigen raat</h3>
+      <p>Proef verschillende seizoensbatches en loop veilig mee met onze imker (pakjes aanwezig).</p>
+    </article>
+    <article class="card" role="listitem">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 18h18M6 18V7a6 6 0 0112 0v11" stroke="#4A2C2A"/></svg>
+      <h3>Zacht wakker worden</h3>
+      <p>Ontbijt met theeceremonie, miso-soepje, seizoensfruit en warme broodjes met boter & honing.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= Kamers ================= -->
+<section class="section wrap" id="kamers" aria-labelledby="room-title">
+  <h2 id="room-title">Kamers</h2>
+  <p class="muted">Alle kamers hebben natuurlijke materialen, tatami-accenten en uitzicht op de tuin. Prijs is per nacht, incl. ontbijt.</p>
+  <div class="room-grid">
+    <article class="room" aria-labelledby="r1">
+      <div class="img" aria-hidden="true"></div>
+      <div class="body">
+        <h3 id="r1">Tatami Queen</h3>
+        <span class="pill"><strong class="price">¥18.000</strong> · 2 pers</span>
+        <ul>
+          <li>Queen futon, cederhout</li>
+          <li>Uitzicht op de bijentuin</li>
+          <li>Eigen balkonnetje</li>
+        </ul>
+      </div>
+    </article>
+    <article class="room" aria-labelledby="r2">
+      <div class="img" aria-hidden="true"></div>
+      <div class="body">
+        <h3 id="r2">Ceder Twin</h3>
+        <span class="pill"><strong class="price">¥20.000</strong> · 2 pers</span>
+        <ul>
+          <li>2x enkel futon, veel licht</li>
+          <li>Rustige hoekkamer</li>
+          <li>Was- & theehoekje</li>
+        </ul>
+      </div>
+    </article>
+    <article class="room" aria-labelledby="r3">
+      <div class="img" aria-hidden="true"></div>
+      <div class="body">
+        <h3 id="r3">Zen Loft</h3>
+        <span class="pill"><strong class="price">¥22.000</strong> · 2–3 pers</span>
+        <ul>
+          <li>Loft met bamboe trap</li>
+          <li>Laag raam met kussens</li>
+          <li>Perfect voor lange verblijven</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= Bijenervaring ================= -->
+<section class="section wrap" id="bijen" aria-labelledby="hive-title">
+  <h2 id="hive-title">Bijen & tuinervaring</h2>
+  <div class="hive-experience">
+    <article class="hive-card">
+      <h3>Imker-rondje (veilig & zacht)</h3>
+      <ul class="list">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7l-9 9-5-5" stroke="#4A2C2A" stroke-width="2"/></svg>
+          Beschermende pakken en handschoenen aanwezig (maat S–XL)
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7l-9 9-5-5" stroke="#4A2C2A" stroke-width="2"/></svg>
+          Korte intro over bijengedrag en respectvolle afstand
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7l-9 9-5-5" stroke="#4A2C2A" stroke-width="2"/></svg>
+          Honingproeverij: lente, zomer & herfstbatch
+        </li>
+      </ul>
+      <p class="notice"><strong>Allergie?</strong>&nbsp;Laat het ons vooraf weten; we passen de route aan en zorgen voor extra afstand tot de korven.</p>
+    </article>
+    <article class="hive-card">
+      <h3>Tuinkaart</h3>
+      <p class="mt-0">Volg het <em>bijenpad</em> langs bloemen, kruidentuin en kleine vijver. Er zijn bankjes, schaduwplekken en zachte lanterns voor de avond.</p>
+      <ul class="list">
+        <li>🌸 Seizoensbloei: kersen, hortensia, kamperfoelie</li>
+        <li>🌱 Kruiden voor thee en ontbijt</li>
+        <li>🕯️ Avondlicht & sterrenkijken</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- ================= Ontbijt ================= -->
+<section class="section wrap" id="ontbijt" aria-labelledby="breakfast-title">
+  <h2 id="breakfast-title">Ontbijt & theeceremonie</h2>
+  <p>We serveren elke ochtend een rustig ontbijt met <strong>theeceremonie (茶道)</strong>: matcha, seizoensfruit, miso, rijst, een zacht broodje en onze huis-honing. Koffie is er ook ☺︎</p>
+  <div class="grid-3">
+    <div class="card"><strong>Vegetarisch & vegan</strong><p class="mb-0">Melden bij reservering—dan passen we het menu aan.</p></div>
+    <div class="card"><strong>Glutenvrij</strong><p class="mb-0">Op verzoek beschikbaar.</p></div>
+    <div class="card"><strong>Vroege vertrekkers</strong><p class="mb-0">Ontbijttas mogelijk (graag 1 dag vooraf).</p></div>
+  </div>
+</section>
+
+<!-- ================= Route ================= -->
+<section class="section wrap" id="route" aria-labelledby="route-title">
+  <h2 id="route-title">Route & omgeving</h2>
+  <div class="grid-2">
+    <div class="card">
+      <h3 class="mt-0">Bereikbaarheid</h3>
+      <ul>
+        <li>🚄 Dichtbij station (± 15 min met bus/taxi)</li>
+        <li>🚌 Bushalte op 7 min wandelen</li>
+        <li>🚲 Fietsverhuur in de buurt</li>
+      </ul>
+      <p class="muted">Na reservering sturen we een duidelijke routebeschrijving in het Japans en Engels.</p>
+      <p><a class="pill" target="_blank" rel="noopener" href="https://www.google.com/maps?q=Kyoto%2C%20Japan&output=embed">Open in Google Maps ↗</a></p>
+    </div>
+    <div class="card" aria-label="kaart">
+      <div style="position:relative; overflow:hidden; border-radius:14px; border:1px solid var(--line);">
+        <iframe title="Kaart Kyoto" src="https://www.google.com/maps?q=Kyoto%2C%20Japan&output=embed" width="100%" height="260" style="display:block; border:0"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Boeken ================= -->
+<section class="section wrap" id="boek" aria-labelledby="book-title">
+  <h2 id="book-title">Reserveer je verblijf</h2>
+  <form class="form" id="bookForm" novalidate>
+    <div class="grid-3c">
+      <div>
+        <label for="in">Check‑in</label>
+        <input type="date" id="in" required>
+      </div>
+      <div>
+        <label for="out">Check‑out</label>
+        <input type="date" id="out" required>
+      </div>
+      <div>
+        <label for="room">Kamer</label>
+        <select id="room" required>
+          <option value="queen" data-price="18000">Tatami Queen — ¥18.000</option>
+          <option value="twin" data-price="20000">Ceder Twin — ¥20.000</option>
+          <option value="loft" data-price="22000">Zen Loft — ¥22.000</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top: 10px;">
+      <div>
+        <label for="guests">Gasten</label>
+        <select id="guests" required>
+          <option>1</option>
+          <option selected>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <div>
+        <label for="tour">Imker-rondje</label>
+        <select id="tour">
+          <option value="none" data-extra="0">Geen</option>
+          <option value="pair" data-extra="2500">Twee personen (+¥2.500)</option>
+          <option value="private" data-extra="4500">Privé rondje (+¥4.500)</option>
+        </select>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top: 10px;">
+      <div>
+        <label for="name">Naam</label>
+        <input id="name" autocomplete="name" placeholder="Voor- en achternaam" required>
+      </div>
+      <div>
+        <label for="email">E‑mail</label>
+        <input id="email" type="email" autocomplete="email" placeholder="jij@example.com" required>
+      </div>
+    </div>
+    <div style="margin-top: 10px;">
+      <label for="notes">Opmerkingen (dieet, allergieën, aankomsttijd)</label>
+      <textarea id="notes" placeholder="Vertel ons wat we mogen voorbereiden"></textarea>
+    </div>
+    <div class="actions">
+      <label class="pill" for="agree" style="user-select:none; cursor:pointer;">
+        <input id="agree" type="checkbox" required style="margin-right:8px"> Ik ga akkoord met de huisregels en het privacybeleid
+      </label>
+      <button class="btn" type="submit">Verstuur aanvraag</button>
+      <span class="estimate" id="estimate">Totaal: ¥—</span>
+    </div>
+    <p class="help">Je ontvangt direct een bevestiging per e‑mail met alle details en routebeschrijving (JP/EN/NL).</p>
+    <div class="notice" role="status" id="status" style="display:none"></div>
+  </form>
+</section>
+
+<!-- ================= FAQ & Reviews ================= -->
+<section class="section wrap" id="faq" aria-labelledby="faq-title">
+  <h2 id="faq-title">Veelgestelde vragen</h2>
+  <details>
+    <summary>Is het veilig om bij de korven te komen?</summary>
+    <p>Ja, we werken met rustige bijenrassen en begeleide routes. We houden ruime afstand en gebruiken beschermende kleding. Meld allergieën altijd vooraf.</p>
+  </details>
+  <details>
+    <summary>Welke talen spreken jullie?</summary>
+    <p>Nederlands, Engels en basis Japans. Na reservering sturen we informatie in het Japans en Engels.</p>
+  </details>
+  <details>
+    <summary>Kan ik parkeren?</summary>
+    <p>Er is beperkte parkeerruimte op eigen terrein; in de straat is doorgaans plek. Kom je met OV, dan helpen we graag met de laatste kilometer.</p>
+  </details>
+
+  <h3 style="margin-top: 18px;">Ervaringen van gasten</h3>
+  <div class="reviews">
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="mb-0"><em>“De honingproeverij was zó leuk. Ontbijt met matcha en zon in de tuin—heerlijk.”</em></p>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★★</div>
+      <p class="mb-0"><em>“Rust, zachte kleuren, en ’s avonds lantaarns in de tuin. Aanrader.”</em></p>
+    </div>
+    <div class="review">
+      <div class="stars">★★★★☆</div>
+      <p class="mb-0"><em>“Kleine B&B met aandacht. Fijn dat er beschermde bijenrondjes zijn.”</em></p>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="wrap foot">
+      <div>
+        <h3 class="mt-0">Bee & Bee</h3>
+        <p class="mb-0">Japan · 小さなゲストハウス · やさしい朝ごはん</p>
+        <p class="muted">E‑mail: hello@beeandbee.jp · Tel: +81 75 000 0000</p>
+        <p class="legal">© <span id="year"></span> Bee & Bee. Alle rechten voorbehouden.</p>
+      </div>
+      <div>
+        <h4 class="mt-0">Huisregels</h4>
+        <ul class="muted">
+          <li>Rust na 22:00 in de tuin</li>
+          <li>Niet voeren aan bijen (we regelen het!)</li>
+          <li>Roken alleen buiten op aangewezen plek</li>
+        </ul>
+      </div>
+    </div>
+  </footer><button id="toTop" aria-label="Terug naar boven">🍯</button>
+
+  <!-- Schema.org (basis) -->  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BedAndBreakfast",
+    "name": "Bee & Bee",
+    "description": "Knusse B&B met bijenkorven en theeceremonie in Japan.",
+    "address": {"@type":"PostalAddress","addressCountry":"JP"},
+    "amenityFeature": [
+      {"@type":"LocationFeatureSpecification","name":"Honingproeverij","value":true},
+      {"@type":"LocationFeatureSpecification","name":"Theeceremonie","value":true}
+    ]
+  }
+  </script>  <script>
+    // Inline SVG for bees in hero (replaced in DOM)
+    const beeSVG = `
+      <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0" stop-color="#F6C453"/>
+            <stop offset="1" stop-color="#EAAE3C"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="28" cy="14" rx="10" ry="6" fill="#BFEAF7" stroke="#4A2C2A" stroke-width="2"/>
+        <ellipse cx="20" cy="14" rx="10" ry="6" fill="#BFEAF7" stroke="#4A2C2A" stroke-width="2"/>
+        <ellipse cx="24" cy="28" rx="16" ry="12" fill="url(#g)" stroke="#4A2C2A" stroke-width="2"/>
+        <path d="M10 28h28M10 24h28M10 32h28" stroke="#4A2C2A" stroke-width="2"/>
+        <circle cx="10" cy="28" r="6" fill="#4A2C2A"/>
+      </svg>`;
+
+    document.querySelectorAll('.bee').forEach(b => { b.innerHTML = beeSVG; });
+
+    // Mobile menu toggle
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger?.addEventListener('click', ()=>{
+      const open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open ? 'true':'false');
+    });
+
+    // Smooth scroll (native CSS behavior in modern browsers)
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Price estimate
+    const inEl = document.getElementById('in');
+    const outEl = document.getElementById('out');
+    const roomEl = document.getElementById('room');
+    const tourEl = document.getElementById('tour');
+    const estimateEl = document.getElementById('estimate');
+    const form = document.getElementById('bookForm');
+    const statusEl = document.getElementById('status');
+
+    function nights(){
+      const a = new Date(inEl.value), b = new Date(outEl.value);
+      const ms = b - a;
+      return isFinite(ms) && ms>0 ? Math.ceil(ms / (1000*60*60*24)) : 0;
+    }
+    function pricePerNight(){
+      const opt = roomEl.selectedOptions[0];
+      return opt ? Number(opt.dataset.price) : 0;
+    }
+    function tourExtra(){
+      const opt = tourEl.selectedOptions[0];
+      return opt ? Number(opt.dataset.extra) : 0;
+    }
+    function updateEstimate(){
+      const n = nights();
+      const p = pricePerNight();
+      const t = tourExtra();
+      if(n>0 && p>0){
+        const total = n * p + (t>0?t:0);
+        estimateEl.textContent = `Totaal: ¥${total.toLocaleString('ja-JP')}`;
+      } else {
+        estimateEl.textContent = 'Totaal: ¥—';
+      }
+    }
+    [inEl, outEl, roomEl, tourEl].forEach(el => el.addEventListener('change', updateEstimate));
+
+    // Form validation (client-side only)
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      if(!form.reportValidity()) return;
+      const agree = document.getElementById('agree');
+      if(!agree.checked){
+        alert('Ga akkoord met de huisregels en het privacybeleid.');
+        return;
+      }
+      statusEl.style.display = 'flex';
+      statusEl.innerHTML = '🐝 <div><strong>Verzonden!</strong> We nemen snel contact op met een bevestiging en routebeschrijving. Dankjewel!<br><small class="muted">(Dit is een demo—koppel hier je e‑mail of boekingssysteem.)</small></div>';
+      form.reset();
+      updateEstimate();
+    });
+
+    // Scroll to top button
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{
+      toTop.style.display = window.scrollY > 600 ? 'flex' : 'none';
+    });
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Respect reduced motion: pause bee animation
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if(mq.matches){
+      document.querySelectorAll('.bee').forEach(b => b.style.animation = 'none');
+    }
+
+    // Replace {BEE} placeholders in hero with SVG (done earlier) and randomize small offsets
+    document.querySelectorAll('.bee').forEach((b,i)=>{
+      b.style.transformOrigin = 'center';
+    });
+
+    // Initial estimate
+    updateEstimate();
+  </script></body>
+</html>
